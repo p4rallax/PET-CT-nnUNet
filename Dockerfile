@@ -23,6 +23,7 @@ RUN git clone https://github.com/MIC-DKFZ/nnUNet.git && \
 # Replace the plans_handler.py file
 COPY plans_handler_modification.py /nnUNet/nnunetv2/utilities/plans_handling/plans_handler.py
 
+COPY infer.py /infer.py
 # Install nnUNet with the modified files
 
 RUN cd nnUNet && \
