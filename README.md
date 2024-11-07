@@ -4,7 +4,7 @@
 
 1. Clone this repository using:
      ```
-     https://github.com/p4rallax/PET-CT-nnUNet.git
+     git clone https://github.com/p4rallax/PET-CT-nnUNet.git
      ```
      
 2. Build docker image using: (nnunet_inference is the container name that will get created , can be replace with name of your choice).
