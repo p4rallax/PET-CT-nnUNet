@@ -9,9 +9,8 @@ RUN curl -sSL https://install.python-poetry.org | python3.10 - --preview
 RUN pip3 install --upgrade requests
 RUN ln -fs /usr/bin/python3.10 /usr/bin/python
 
-COPY requirements.txt /tmp/
+RUN pip install --upgrade google-cloud-storage
 
-RUN pip install -r /tmp/requirements.txt && pip install --upgrade google-cloud-storage
 
 WORKDIR /
 
@@ -23,11 +22,16 @@ RUN git clone https://github.com/MIC-DKFZ/nnUNet.git && \
 # Replace the plans_handler.py file
 COPY plans_handler_modification.py /nnUNet/nnunetv2/utilities/plans_handling/plans_handler.py
 
-COPY infer.py /infer.py
 # Install nnUNet with the modified files
+
+RUN pip install blosc2
+RUN pip install acvl-utils==0.2
 
 RUN cd nnUNet && \
     pip install -e .
+
+COPY infer.py /infer.py
+
 
 # Create the necessary directories for nnUNet
 ENV nnUNet_raw=/nnUNet_raw_data_base \
@@ -55,5 +59,11 @@ RUN mkdir -p $nnUNet_raw/Dataset703_FS_SCGH_Train/imagesTs
 # Expose a folder for mounting external data (e.g., for inference data)
 VOLUME /data
 
+# Copy the inference script into the container
+COPY infer.sh /run_inference.sh
+
+# Make the script executable
+RUN chmod +x /run_inference.sh
+
 # Set the default command
-CMD ["bash"]
+ENTRYPOINT ["/run_inference.sh"]

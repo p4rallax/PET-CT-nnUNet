@@ -1,10 +1,13 @@
 import os
 import subprocess
-
+import argparse
 
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Run nnUNet inference with a specified output path.")
+    parser.add_argument("-o", "--output", required=True, help="Output path for predictions")
+    args = parser.parse_args()
     # Set environment variables
     os.environ['CUDA_VISIBLE_DEVICES'] = '1'
     base_nnunet_dir = "/"
@@ -41,7 +44,7 @@ def main():
         "-c", "3d_fullres_resenc",
         "-p", "nnUNetPlans",
         "-i", "/nnUNet_raw_data_base/Dataset703_FS_SCGH_Train/imagesTs",
-        "-o", "/nnUNet_trained_models/predictions/"
+        "-o", args.output
         
     ]
     subprocess.run(inference_command, check=True)
