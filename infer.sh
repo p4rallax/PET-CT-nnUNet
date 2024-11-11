@@ -8,8 +8,8 @@ renamed_file1="image_0000.nii.gz"  # Adjust to the expected name
 renamed_file2="image_0001.nii.gz"  # Adjust to the expected name
 
 # Copy and rename files to the expected locations
-cp "/data/$input_file1" "/nnUNet_raw_data_base/Dataset703_FS_SCGH_Train/imagesTs/$renamed_file1"
-cp "/data/$input_file2" "/nnUNet_raw_data_base/Dataset703_FS_SCGH_Train/imagesTs/$renamed_file2"
+cp "/data/input/$input_file1" "/nnUNet_raw_data_base/Dataset703_FS_SCGH_Train/imagesTs/$renamed_file1"
+cp "/data/input/$input_file2" "/nnUNet_raw_data_base/Dataset703_FS_SCGH_Train/imagesTs/$renamed_file2"
 
 export nnUNet_raw="/nnUNet_raw_data_base"
 export nnUNet_preprocessed="/nnUNet_preprocessed"
