@@ -11,7 +11,7 @@
 
 2. Run the docker container using: (Make sure container name is same as used in previous step). Note that file1 is PET image and file2 is CT.
      ```
-   docker run --rm  --runtime=nvidia -it  --shm-size=4g --gpus all --ipc=host  -v /path/to/image/folder:/data/input  -v /path/to/output/folder:/data/output nnunet_inference  file1.nii.gz file2.nii.gz /data/output
+   docker run --rm  --runtime=nvidia -it  --shm-size=4g --gpus all --ipc=host  -v /path/to/image/folder:/data/input  -v /path/to/output/folder:/data/output nnunet_inference  file1.nii.gz file2.nii.gz output_filename(eg : test.nii.gz)
      ```
 
 
